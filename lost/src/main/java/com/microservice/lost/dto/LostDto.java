@@ -9,6 +9,7 @@ public class LostDto {
 
     private Integer id;
     private Date lostDate;
+    private Integer fee;
     private Integer bookId;
     private Integer userId;
 }

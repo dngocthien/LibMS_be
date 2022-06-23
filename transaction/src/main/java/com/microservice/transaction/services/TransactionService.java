@@ -35,4 +35,22 @@ public class TransactionService implements ITransactionService {
         return repository.findByUserId(id);
     }
 
+    @Override
+    public List<Transaction> getByOverdue() {
+        return repository.findByOverdue();
+    }
+
+    @Override
+    public Transaction updateTransaction(Integer id, Transaction dto) {
+        Transaction existing = repository.findById(id).orElse(null);
+        if(existing!=null){
+            existing.setIssuedDate(dto.getIssuedDate());
+            existing.setDueDate(dto.getDueDate());
+            existing.setFinished(dto.isFinished());
+            existing.setUserId(dto.getUserId());
+            return repository.save(existing);
+        }
+        return null;
+    }
+
 }

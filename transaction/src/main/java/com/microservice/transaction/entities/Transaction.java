@@ -14,6 +14,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private Date issuedDate;
+    private Date dueDate;
     private boolean finished;
     private Integer userId;
 

@@ -28,6 +28,11 @@ public class BookService implements IBookService {
     }
 
     @Override
+    public List<Book> getNoneBooks() {
+        return repository.findByNone();
+    }
+
+    @Override
     public Book getBookByID(Integer id) {
         return repository.findById(id).orElse(null);
     }

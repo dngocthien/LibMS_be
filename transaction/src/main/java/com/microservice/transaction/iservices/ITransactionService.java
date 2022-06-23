@@ -10,5 +10,6 @@ public interface ITransactionService {
     public List<Transaction> getAllTransaction();
     public Transaction getTransactionByID(Integer id);
     public List<Transaction> getByUserId(Integer id);
-
+    public List<Transaction> getByOverdue();
+    Transaction updateTransaction(Integer id, Transaction dto);
 }

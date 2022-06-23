@@ -19,6 +19,11 @@ public class BookController {
         return facade.getAllBooks();
     }
 
+    @GetMapping("/books/none")
+    public List<BookDto> findNoneBooks() {
+        return facade.getNoneBooks();
+    }
+
     @GetMapping("/books/{text}")
     public List<BookDto> findBooksByName(@PathVariable String text) {
         return facade.getBookByTitle(text);
@@ -34,7 +39,7 @@ public class BookController {
         return facade.saveBook(dto);
     }
 
-    @PutMapping("/books/id/{id}")
+    @PutMapping("/books/{id}")
     public BookDto updateBook(@PathVariable Integer id, @RequestBody BookDto dto){
         return facade.updateBook(id, dto);
     }

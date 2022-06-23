@@ -12,4 +12,7 @@ public interface TransactionRepo extends JpaRepository<Transaction, Integer> {
 
     @Query("SELECT t FROM Transaction t WHERE t.userId = ?1  AND t.finished = false")
     List<Transaction> findByUserId(Integer id);
+
+    @Query("SELECT t FROM Transaction t WHERE t.dueDate < CURRENT_DATE() AND t.finished = false")
+    List<Transaction> findByOverdue();
 }

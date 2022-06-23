@@ -9,6 +9,7 @@ public class TransactionDto {
 
     private Integer id;
     private Date issuedDate;
+    private Date dueDate;
     private boolean finished;
     private Integer userId;
 }

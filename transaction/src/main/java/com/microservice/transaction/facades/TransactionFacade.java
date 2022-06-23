@@ -21,23 +21,33 @@ public class TransactionFacade {
     }
 
     public List<TransactionDto> getAllTransaction() {
-        List<Transaction> userList = service.getAllTransaction();
-        return addDtoList(userList);
+        List<Transaction> list = service.getAllTransaction();
+        return addDtoList(list);
     }
 
     public TransactionDto getTransactionById(Integer id) {
-        Transaction user = service.getTransactionByID(id);
-        return model2Dto(user);
+        Transaction transaction = service.getTransactionByID(id);
+        return model2Dto(transaction);
+
+    }public List<TransactionDto> getTransactionByOverdue() {
+        List<Transaction> list = service.getByOverdue();
+        return addDtoList(list);
     }
 
     public List<TransactionDto> getTransactionByUserId(Integer id) {
-        List<Transaction> userList = service.getByUserId(id);
-        return addDtoList(userList);
+        List<Transaction> list = service.getByUserId(id);
+        return addDtoList(list);
+    }
+
+    public TransactionDto updateTransaction(Integer id, TransactionDto dto) {
+        Transaction transaction = service.updateTransaction(id, dto2Model(dto));
+        return model2Dto(transaction);
     }
 
     private Transaction dto2Model(TransactionDto dto){
         Transaction model = new Transaction();
         model.setIssuedDate(dto.getIssuedDate());
+        model.setDueDate(dto.getDueDate());
         model.setFinished(dto.isFinished());
         model.setUserId(dto.getUserId());
         return model;
@@ -47,6 +57,7 @@ public class TransactionFacade {
         TransactionDto dto = new TransactionDto();
         dto.setId(model.getId());
         dto.setIssuedDate(model.getIssuedDate());
+        dto.setDueDate(model.getDueDate());
         dto.setFinished(model.isFinished());
         dto.setUserId(model.getUserId());
         return dto;

@@ -13,6 +13,9 @@ public interface BookRepo extends JpaRepository<Book, Integer> {
     @Query("select u from Book u where lower(u.title) like lower(concat('%', ?1,'%'))")
     List<Book> findByTitleLike(String text);
 
+    @Query("SELECT b from Book b where b.quantity < 1")
+    List<Book> findByNone();
+
 //    List<Book> findByTitleContaining(String text);
 
 }

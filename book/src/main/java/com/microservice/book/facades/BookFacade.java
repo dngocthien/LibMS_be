@@ -48,6 +48,11 @@ public class BookFacade {
         return addDtoList(modelList);
     }
 
+    public List<BookDto> getNoneBooks() {
+        List<Book> modelList = service.getNoneBooks();
+        return addDtoList(modelList);
+    }
+
     public List<BookDto> getBookByTitle(@NotNull String text) {
         List<Book> modelList = service.getBookByTitle(text);
         return addDtoList(modelList);

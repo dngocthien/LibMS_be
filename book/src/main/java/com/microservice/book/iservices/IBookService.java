@@ -8,8 +8,10 @@ public interface IBookService {
 
     public Book saveBook(Book book);
     public List<Book> getAllBooks();
+    List<Book> getNoneBooks();
     public Book getBookByID(Integer id);
 //    public List<Book> getNotReturnedByUserId(Integer id);
     public List<Book> getBookByTitle(String text);
     public void deleteBook(Integer id);
+
 }
