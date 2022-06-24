@@ -108,6 +108,7 @@ public class BookFacade {
     }
 
     private BookDto model2Dto(Book model) {
+        if(model == null) return null;
         BookDto dto = new BookDto();
         dto.setId(model.getId());
         dto.setTitle(model.getTitle());

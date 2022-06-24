@@ -54,6 +54,7 @@ public class TransactionFacade {
     }
 
     private TransactionDto model2Dto(Transaction model){
+        if(model == null) return null;
         TransactionDto dto = new TransactionDto();
         dto.setId(model.getId());
         dto.setIssuedDate(model.getIssuedDate());
