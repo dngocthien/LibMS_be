@@ -5,6 +5,7 @@ import com.microservice.book.facades.BookFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,13 @@ public class BookController {
     @GetMapping("/books/{text}")
     public List<BookDto> findBooksByName(@PathVariable String text) {
         return facade.getBookByTitle(text);
+    }
+
+    @GetMapping("/books/id/{id}")
+    public List<BookDto> findBooksByName(@PathVariable Integer id) {
+        List<BookDto> list = new ArrayList<>();
+        list.add(facade.getBookById(id));
+        return list;
     }
 
 //    @GetMapping("books/users/{id}")

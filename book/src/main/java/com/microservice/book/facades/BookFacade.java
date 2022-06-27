@@ -53,6 +53,11 @@ public class BookFacade {
         return addDtoList(modelList);
     }
 
+    public BookDto getBookById(Integer id) {
+        Book model = service.getBookByID(id);
+        return model2Dto(model);
+    }
+
     public List<BookDto> getBookByTitle(@NotNull String text) {
         List<Book> modelList = service.getBookByTitle(text);
         return addDtoList(modelList);
@@ -141,4 +146,5 @@ public class BookFacade {
         }
         return dtoList;
     }
+
 }

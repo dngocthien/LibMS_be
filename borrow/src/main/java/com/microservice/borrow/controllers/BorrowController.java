@@ -34,10 +34,10 @@ public class BorrowController {
         return facade.getBorrowByTransactionId(id);
     }
 
-    @GetMapping("/borrows/expired")
-    public List<BorrowDto> getExpiredBorrows(){
-        return facade.getBorrowByOverDue();
-    }
+//    @GetMapping("/borrows/user/{id}")
+//    public List<BorrowDto> getBorrowsByUserId(@PathVariable Integer id){
+//        return facade.getBorrowsByUserId(id);
+//    }
 
     @PutMapping("/borrows/{id}")
     public BorrowDto updateBorrow(@PathVariable Integer id, @RequestBody BorrowDto dto){

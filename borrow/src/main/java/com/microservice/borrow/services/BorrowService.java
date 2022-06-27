@@ -41,12 +41,6 @@ public class BorrowService implements IBorrowService {
     }
 
     @Override
-    public List<Borrow> getBorrowByOverDue() {
-//        mailService.sendSimpleMessage("javamailsender102@gmail.com", "test mail", "Your due date was over");
-        return repository.getByOverDue();
-    }
-
-    @Override
     public Borrow updateBorrow(Integer id, Borrow borrow) {
         Optional<Borrow> query = repository.findById(id);
         if(query.isPresent()){

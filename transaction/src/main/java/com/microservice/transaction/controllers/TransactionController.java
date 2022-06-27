@@ -37,6 +37,7 @@ public class TransactionController {
     @GetMapping("/transactions/user/{id}")
     public List<TransactionDto> findTransactionByUserId(@PathVariable Integer id) {
         return facade.getTransactionByUserId(id);
+//        return facade.getTransactionByUserId(id).get(0);
     }
 
     @PutMapping("/transactions/{id}")

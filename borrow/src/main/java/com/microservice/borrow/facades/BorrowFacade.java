@@ -36,15 +36,19 @@ public class BorrowFacade {
         return addDtoList(models);
     }
 
-    public List<BorrowDto> getBorrowByOverDue() {
-        List<Borrow> models = service.getBorrowByOverDue();
-        return addDtoList(models);
-    }
-
     public List<BorrowDto> getBorrowByTransactionId(Integer id) {
         List<Borrow> models = service.getByTransactionId(id);
         return addDtoList(models);
     }
+
+//    public List<BorrowDto> getBorrowsByUserId(Integer id) {
+//        List<Borrow> borrowList = new ArrayList<>();
+//        TransactionDto transaction = userService.getTransactionByUserId(id);
+//        if (transaction != null) {
+//            borrowList = service.getByTransactionId(transaction.getId());
+//        }
+//        return addDtoList(borrowList);
+//    }
 
     public BorrowDto updateBorrow(Integer id, BorrowDto dto){
         Borrow model = service.updateBorrow(id, dto2Model(dto));

@@ -10,8 +10,6 @@ public interface IBorrowService {
     public List<Borrow> getAllBorrow();
     public Borrow getBorrowByID(Integer id);
 
-    List<Borrow> getBorrowByOverDue();
-
     public List<Borrow> getBorrowByStatus(boolean status);
 
     List<Borrow> getByTransactionId(Integer id);
