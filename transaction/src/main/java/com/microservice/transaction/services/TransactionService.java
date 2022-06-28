@@ -6,6 +6,7 @@ import com.microservice.transaction.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,6 +39,11 @@ public class TransactionService implements ITransactionService {
     @Override
     public List<Transaction> getByOverdue() {
         return repository.findByOverdue();
+    }
+
+    @Override
+    public List<Transaction> getTransactionByTime(String start, String end) {
+        return repository.findByTime(start, end);
     }
 
     @Override

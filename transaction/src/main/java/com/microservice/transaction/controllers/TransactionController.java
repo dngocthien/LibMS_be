@@ -2,9 +2,11 @@ package com.microservice.transaction.controllers;
 
 import com.microservice.transaction.dto.TransactionDto;
 import com.microservice.transaction.facades.TransactionFacade;
+import com.microservice.transaction.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,7 @@ public class TransactionController {
         return facade.getAllTransaction();
     }
 
- @GetMapping("/transactions/overdue")
+    @GetMapping("/transactions/overdue")
     public List<TransactionDto> findOverdueTransaction() {
         return facade.getTransactionByOverdue();
     }
@@ -37,7 +39,11 @@ public class TransactionController {
     @GetMapping("/transactions/user/{id}")
     public List<TransactionDto> findTransactionByUserId(@PathVariable Integer id) {
         return facade.getTransactionByUserId(id);
-//        return facade.getTransactionByUserId(id).get(0);
+    }
+
+    @GetMapping("/transactions/time")
+    public List<TransactionDto> findTransactionByTime(@RequestPart String start, @RequestPart String end) {
+        return facade.findTransactionByTime("2022/06/01", "2022/07/01");
     }
 
     @PutMapping("/transactions/{id}")

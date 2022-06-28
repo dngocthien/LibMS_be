@@ -11,8 +11,12 @@ import java.util.List;
 public interface BorrowRepo extends JpaRepository<Borrow, Integer> {
     List<Borrow> getByStatus(boolean status);
 
-//    @Query("SELECT b FROM Borrow b WHERE b.returnDate < CURRENT_DATE() AND b.status = false")
-//    List<Borrow> getByOverDue();
-
     List<Borrow> findByTransactionId(Integer id);
+
+//    @Query("SELECT DISTINCT b FROM Borrow b, transaction tr INNER JOIN b ON b.transactionId = tr.id WHERE tr.userId = 5" )
+////            "FROM borrow b, transaction tr\n" +
+////            "INNER JOIN borrow ON borrow.transactionId = tr.id\n" +
+////            "WHERE tr.userId = 5")
+//    List<Borrow> findByUserId(Integer id);
+
 }

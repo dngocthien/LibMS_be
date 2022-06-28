@@ -3,8 +3,11 @@ package com.microservice.borrow.controllers;
 import com.microservice.borrow.dto.BorrowDto;
 import com.microservice.borrow.facades.BorrowFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -24,11 +27,6 @@ public class BorrowController {
         return facade.getAllBorrows();
     }
 
-    @GetMapping("/borrows/{status}")
-    public List<BorrowDto> getBorrowsByStatus(@PathVariable boolean status){
-        return facade.getBorrowByStatus(status);
-    }
-
     @GetMapping("/borrows/transaction/{id}")
     public List<BorrowDto> getBorrowsByTransactionId(@PathVariable Integer id){
         return facade.getBorrowByTransactionId(id);
@@ -40,7 +38,10 @@ public class BorrowController {
 //    }
 
     @PutMapping("/borrows/{id}")
-    public BorrowDto updateBorrow(@PathVariable Integer id, @RequestBody BorrowDto dto){
-        return facade.updateBorrow(id, dto);
+    public ResponseEntity<BorrowDto> updateBorrow(@PathVariable Integer id, @RequestBody BorrowDto dto, HttpServletResponse response){
+//        return facade.updateBorrow(id, dto);
+        facade.updateBorrow(id, dto);
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.updateBorrow(id, dto), HttpStatus.OK);
     }
 }

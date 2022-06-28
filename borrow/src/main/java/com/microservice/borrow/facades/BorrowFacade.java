@@ -42,12 +42,8 @@ public class BorrowFacade {
     }
 
 //    public List<BorrowDto> getBorrowsByUserId(Integer id) {
-//        List<Borrow> borrowList = new ArrayList<>();
-//        TransactionDto transaction = userService.getTransactionByUserId(id);
-//        if (transaction != null) {
-//            borrowList = service.getByTransactionId(transaction.getId());
-//        }
-//        return addDtoList(borrowList);
+//        List<Borrow> models = service.getByUserId(id);
+//        return addDtoList(models);
 //    }
 
     public BorrowDto updateBorrow(Integer id, BorrowDto dto){

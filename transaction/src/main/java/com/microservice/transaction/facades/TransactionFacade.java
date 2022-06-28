@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -36,6 +37,11 @@ public class TransactionFacade {
 
     public List<TransactionDto> getTransactionByUserId(Integer id) {
         List<Transaction> list = service.getByUserId(id);
+        return addDtoList(list);
+    }
+
+    public List<TransactionDto> findTransactionByTime(String start, String end) {
+        List<Transaction> list = service.getTransactionByTime(start, end);
         return addDtoList(list);
     }
 
@@ -79,4 +85,5 @@ public class TransactionFacade {
         }
         return dtoList;
     }
+
 }

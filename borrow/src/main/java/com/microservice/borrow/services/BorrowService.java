@@ -35,10 +35,17 @@ public class BorrowService implements IBorrowService {
         return repository.findByTransactionId(id);
     }
 
+//    @Override
+//    public List<Borrow> getByUserId(Integer id) {
+//        return repository.findByUserId(id);
+//    }
+
     @Override
     public List<Borrow> getBorrowByStatus(boolean status) {
         return repository.getByStatus(status);
     }
+
+
 
     @Override
     public Borrow updateBorrow(Integer id, Borrow borrow) {

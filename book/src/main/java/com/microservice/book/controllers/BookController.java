@@ -3,8 +3,12 @@ package com.microservice.book.controllers;
 import com.microservice.book.dto.BookDto;
 import com.microservice.book.facades.BookFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +20,9 @@ public class BookController {
     private BookFacade facade;
 
     @GetMapping("/books")
-    public List<BookDto> findAllBooks() {
-        return facade.getAllBooks();
+    public ResponseEntity<List<BookDto>> findAllBooks(HttpServletResponse response) {
+        response.addHeader("*", "http://localhost:3000/");
+        return new ResponseEntity<>(facade.getAllBooks(),HttpStatus.OK);
     }
 
     @GetMapping("/books/none")
@@ -31,29 +36,27 @@ public class BookController {
     }
 
     @GetMapping("/books/id/{id}")
-    public List<BookDto> findBooksByName(@PathVariable Integer id) {
+    public List<BookDto> findBooksById(@PathVariable Integer id) {
         List<BookDto> list = new ArrayList<>();
         list.add(facade.getBookById(id));
         return list;
     }
 
-//    @GetMapping("books/users/{id}")
-//    public List<BookDto> findUserBorrowsById(@PathVariable Integer id){
-//        return facade.getUserBorrowsById(id);
-//    }
-
     @PostMapping("/books")
-    public BookDto saveBook(@RequestBody BookDto dto){
+    public BookDto saveBook(@RequestBody BookDto dto) {
         return facade.saveBook(dto);
     }
 
     @PutMapping("/books/{id}")
-    public BookDto updateBook(@PathVariable Integer id, @RequestBody BookDto dto){
+    public BookDto updateBook(@PathVariable Integer id, @RequestBody BookDto dto) {
         return facade.updateBook(id, dto);
     }
 
     @DeleteMapping("/books/{id}")
-    public void deleteBook(@PathVariable Integer id){
+    public ResponseEntity<String> deleteBook(@PathVariable Integer id, HttpServletResponse response) {
         facade.deleteBook(id);
+        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+        return new ResponseEntity<>("Remove book " + id, HttpStatus.OK);
+//        return response;
     }
 }
