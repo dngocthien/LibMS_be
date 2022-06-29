@@ -70,7 +70,7 @@ public class TransactionFacade {
         return dto;
     }
 
-    private List<Transaction> addUserList(List<TransactionDto> dtoList){
+    private List<Transaction> addModelList(List<TransactionDto> dtoList){
         List<Transaction> modelList = new ArrayList<>();
         for(TransactionDto u: dtoList){
             modelList.add(dto2Model(u));

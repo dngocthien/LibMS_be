@@ -17,19 +17,28 @@ public class BorrowController {
     @Autowired
     BorrowFacade facade;
 
+    @PostMapping("/borrows/many")
+    public ResponseEntity<List<BorrowDto>> addBorrows(@RequestBody List<BorrowDto> dto, HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.saveBorrows(dto), HttpStatus.OK);
+    }
+
     @PostMapping("/borrows")
-    public BorrowDto addBorrow(@RequestBody BorrowDto dto){
-        return facade.saveBorrow(dto);
+    public ResponseEntity<BorrowDto> addBorrow(@RequestBody BorrowDto dto, HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.saveBorrow(dto), HttpStatus.OK);
     }
 
     @GetMapping("/borrows")
-    public List<BorrowDto> getAllBorrows(){
-        return facade.getAllBorrows();
+    public ResponseEntity<List<BorrowDto>> getAllBorrows(HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getAllBorrows(), HttpStatus.OK);
     }
 
     @GetMapping("/borrows/transaction/{id}")
-    public List<BorrowDto> getBorrowsByTransactionId(@PathVariable Integer id){
-        return facade.getBorrowByTransactionId(id);
+    public ResponseEntity<List<BorrowDto>> getBorrowsByTransactionId(@PathVariable Integer id, HttpServletResponse response){
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getBorrowByTransactionId(id), HttpStatus.OK);
     }
 
 //    @GetMapping("/borrows/user/{id}")
@@ -39,8 +48,6 @@ public class BorrowController {
 
     @PutMapping("/borrows/{id}")
     public ResponseEntity<BorrowDto> updateBorrow(@PathVariable Integer id, @RequestBody BorrowDto dto, HttpServletResponse response){
-//        return facade.updateBorrow(id, dto);
-        facade.updateBorrow(id, dto);
         response.addHeader("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<>(facade.updateBorrow(id, dto), HttpStatus.OK);
     }

@@ -21,6 +21,11 @@ public class BorrowService implements IBorrowService {
     }
 
     @Override
+    public List<Borrow> saveBorrows(List<Borrow> borrows) {
+        return repository.saveAll(borrows);
+    }
+
+    @Override
     public List<Borrow> getAllBorrow() {
         return (List<Borrow>) repository.findAll();
     }

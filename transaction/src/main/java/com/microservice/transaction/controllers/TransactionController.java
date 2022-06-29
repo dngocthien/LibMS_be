@@ -17,7 +17,7 @@ public class TransactionController {
     private TransactionFacade facade;
 
     @PostMapping("/transactions")
-    public TransactionDto addUser(@RequestBody TransactionDto dto) {
+    public TransactionDto addTransaction(@RequestBody TransactionDto dto) {
         return facade.saveTransaction(dto);
     }
 
@@ -41,6 +41,7 @@ public class TransactionController {
         return facade.getTransactionByUserId(id);
     }
 
+    //testing
     @GetMapping("/transactions/time")
     public List<TransactionDto> findTransactionByTime(@RequestPart String start, @RequestPart String end) {
         return facade.findTransactionByTime("2022/06/01", "2022/07/01");

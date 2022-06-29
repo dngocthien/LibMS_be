@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface IBorrowService {
 
-    public Borrow saveBorrow(Borrow user);
+    public Borrow saveBorrow(Borrow borrow);
+
+    public List<Borrow> saveBorrows(List<Borrow> borrows);
+
     public List<Borrow> getAllBorrow();
+
     public Borrow getBorrowByID(Integer id);
 
     public List<Borrow> getBorrowByStatus(boolean status);

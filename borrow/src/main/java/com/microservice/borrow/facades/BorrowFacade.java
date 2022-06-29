@@ -21,6 +21,11 @@ public class BorrowFacade {
         return model2Dto(model);
     }
 
+    public List<BorrowDto> saveBorrows(List<BorrowDto> dto) {
+        List<Borrow> modelList = service.saveBorrows(addModelList(dto));
+        return addDtoList(modelList);
+    }
+
     public List<BorrowDto> getAllBorrows() {
         List<Borrow> modelList = service.getAllBorrow();
         return addDtoList(modelList);

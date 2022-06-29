@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,42 +20,46 @@ public class BookController {
 
     @GetMapping("/books")
     public ResponseEntity<List<BookDto>> findAllBooks(HttpServletResponse response) {
-        response.addHeader("*", "http://localhost:3000/");
+        response.addHeader("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<>(facade.getAllBooks(),HttpStatus.OK);
     }
 
     @GetMapping("/books/none")
-    public List<BookDto> findNoneBooks() {
-        return facade.getNoneBooks();
+    public ResponseEntity<List<BookDto>> findNoneBooks(HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getNoneBooks(), HttpStatus.OK);
     }
 
     @GetMapping("/books/{text}")
-    public List<BookDto> findBooksByName(@PathVariable String text) {
-        return facade.getBookByTitle(text);
+    public ResponseEntity<List<BookDto>> findBooksByName(@PathVariable String text, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getBookByTitle(text), HttpStatus.OK);
     }
 
     @GetMapping("/books/id/{id}")
-    public List<BookDto> findBooksById(@PathVariable Integer id) {
+    public ResponseEntity<List<BookDto>> findBooksById(@PathVariable Integer id, HttpServletResponse response) {
         List<BookDto> list = new ArrayList<>();
         list.add(facade.getBookById(id));
-        return list;
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping("/books")
-    public BookDto saveBook(@RequestBody BookDto dto) {
-        return facade.saveBook(dto);
+    public ResponseEntity<BookDto> saveBook(@RequestBody BookDto book, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.saveBook(book), HttpStatus.OK);
     }
 
     @PutMapping("/books/{id}")
-    public BookDto updateBook(@PathVariable Integer id, @RequestBody BookDto dto) {
-        return facade.updateBook(id, dto);
+    public ResponseEntity<BookDto> updateBook(@PathVariable Integer id, @RequestBody BookDto dto, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.updateBook(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/books/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Integer id, HttpServletResponse response) {
         facade.deleteBook(id);
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
-        return new ResponseEntity<>("Remove book " + id, HttpStatus.OK);
-//        return response;
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>("Removed book " + id, HttpStatus.OK);
     }
 }
