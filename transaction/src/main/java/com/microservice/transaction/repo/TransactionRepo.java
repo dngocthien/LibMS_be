@@ -18,5 +18,5 @@ public interface TransactionRepo extends JpaRepository<Transaction, Integer> {
     List<Transaction> findByOverdue();
 
     @Query("SELECT t FROM Transaction t WHERE t.issuedDate BETWEEN ?1 AND ?2")
-    List<Transaction> findByTime(String start, String end);
+    List<Transaction> findByTime(Date start, Date end);
 }

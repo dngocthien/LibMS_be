@@ -43,6 +43,7 @@ public class LostFacade {
     private Lost dto2Model(LostDto dto){
         Lost model = new Lost();
         model.setLostDate(dto.getLostDate());
+        model.setFee(dto.getFee());
         model.setBookId(dto.getBookId());
         model.setUserId(dto.getUserId());
         return model;
@@ -52,6 +53,7 @@ public class LostFacade {
         LostDto dto = new LostDto();
         dto.setId(model.getId());
         dto.setLostDate(model.getLostDate());
+        dto.setFee((model.getFee()));
         dto.setBookId(model.getBookId());
         dto.setUserId(model.getUserId());
         return dto;

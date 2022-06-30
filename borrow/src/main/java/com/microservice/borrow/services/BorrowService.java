@@ -37,7 +37,7 @@ public class BorrowService implements IBorrowService {
 
     @Override
     public List<Borrow> getByTransactionId(Integer id) {
-        return repository.findByTransactionId(id);
+        return repository.findByTransactionIdSorted(id);
     }
 
 //    @Override

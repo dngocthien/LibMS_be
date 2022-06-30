@@ -42,7 +42,7 @@ public class TransactionService implements ITransactionService {
     }
 
     @Override
-    public List<Transaction> getTransactionByTime(String start, String end) {
+    public List<Transaction> getTransactionByTime(Date start, Date end) {
         return repository.findByTime(start, end);
     }
 

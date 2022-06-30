@@ -12,7 +12,7 @@ public interface ITransactionService {
     public Transaction getTransactionByID(Integer id);
     public List<Transaction> getByUserId(Integer id);
     public List<Transaction> getByOverdue();
-    List<Transaction> getTransactionByTime(String start, String end);
+    List<Transaction> getTransactionByTime(Date start, Date end);
     Transaction updateTransaction(Integer id, Transaction dto);
 
 }

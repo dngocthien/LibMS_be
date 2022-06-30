@@ -1,12 +1,11 @@
 package com.microservice.transaction.controllers;
 
+import com.microservice.transaction.dto.ByTime;
 import com.microservice.transaction.dto.TransactionDto;
 import com.microservice.transaction.facades.TransactionFacade;
-import com.microservice.transaction.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,9 +41,9 @@ public class TransactionController {
     }
 
     //testing
-    @GetMapping("/transactions/time")
-    public List<TransactionDto> findTransactionByTime(@RequestPart String start, @RequestPart String end) {
-        return facade.findTransactionByTime("2022/06/01", "2022/07/01");
+    @PostMapping("/transactions/time")
+    public List<TransactionDto> findTransactionByTime(@RequestBody ByTime byTime) {
+        return facade.findTransactionByTime(byTime.getFromDate(), byTime.getToDate());
     }
 
     @PutMapping("/transactions/{id}")

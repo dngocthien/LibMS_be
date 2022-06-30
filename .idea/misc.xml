@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/borrow/pom.xml" />
         <option value="$PROJECT_DIR$/transaction/pom.xml" />
         <option value="$PROJECT_DIR$/lost/pom.xml" />
+        <option value="$PROJECT_DIR$/swagger/pom.xml" />
       </list>
     </option>
   </component>

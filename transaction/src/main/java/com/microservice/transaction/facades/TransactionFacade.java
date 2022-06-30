@@ -40,7 +40,7 @@ public class TransactionFacade {
         return addDtoList(list);
     }
 
-    public List<TransactionDto> findTransactionByTime(String start, String end) {
+    public List<TransactionDto> findTransactionByTime(Date start, Date end) {
         List<Transaction> list = service.getTransactionByTime(start, end);
         return addDtoList(list);
     }
