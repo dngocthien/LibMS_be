@@ -1,9 +1,9 @@
 
 server:
-  port: 8082
+  port: 8087
 spring:
   application:
-    name: category-service
+    name: admin-service
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -12,10 +12,9 @@ spring:
   jpa:
     show-sql: true
     hibernate.ddl-auto: update
-  main:
-    allow-bean-definition-overriding=true:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
 properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect
+

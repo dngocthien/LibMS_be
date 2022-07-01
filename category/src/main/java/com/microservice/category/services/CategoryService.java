@@ -35,6 +35,16 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    public Category updateCategory(Integer id, Category model) {
+        Category existing = repository.findById(id).orElse(null);
+        if(existing!=null){
+            existing.setName(model.getName());
+            return repository.save(existing);
+        }
+        return null;
+    }
+
+    @Override
     public void deleteCategory(Integer id){
         repository.deleteById(id);
     }

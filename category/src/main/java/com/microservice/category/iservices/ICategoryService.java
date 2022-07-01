@@ -11,5 +11,7 @@ public interface ICategoryService {
     public List<Category> getAllCategories();
     public Category getCategoryByID(Integer id);
     public List<Category> getCategoryByName(String name);
+    Category updateCategory(Integer id, Category dto2Model);
     public void deleteCategory(Integer id);
+
 }

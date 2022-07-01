@@ -25,7 +25,17 @@ public class CategoryFacade {
         return addDtoList(modelList);
     }
 
-    public void deleteCart(Integer id) {
+    public CategoryDto getCategoryById(@NotNull Integer id) {
+        Category model = service.getCategoryByID(id);
+        return model2Dto(model);
+    }
+
+    public CategoryDto updateCategory(@NotNull Integer id, @NotNull CategoryDto dto) {
+        Category model = service.updateCategory(id, dto2Model(dto));
+        return model2Dto(model);
+    }
+
+    public void deleteCartegory(Integer id) {
         service.deleteCategory(id);
     }
 

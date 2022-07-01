@@ -5,7 +5,6 @@ import com.microservice.category.facades.CategoryFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -16,7 +15,7 @@ public class CategoryController {
     private CategoryFacade facade;
 
     @PostMapping("/categories")
-    public CategoryDto addCart(@RequestBody CategoryDto category) {
+    public CategoryDto addCategory(@RequestBody CategoryDto category) {
         return facade.saveCategory(category);
     }
 
@@ -25,9 +24,19 @@ public class CategoryController {
         return facade.getAllCategories();
     }
 
-    @DeleteMapping("/categories/{id}")
-    @Transactional
-    public void deleteCategory(@PathVariable Integer id) {
-        facade.deleteCart(id);
+    @GetMapping("/categories/{id}")
+    public CategoryDto findAllCategories(@PathVariable Integer id) {
+        return facade.getCategoryById(id);
     }
+
+    @PutMapping("/categories/{id}")
+    public CategoryDto updateCategory(@PathVariable Integer id, @RequestBody CategoryDto dto) {
+        return facade.updateCategory(id, dto);
+    }
+
+//    @DeleteMapping("/categories/{id}")
+//    @Transactional
+//    public void deleteCategory(@PathVariable Integer id) {
+//        facade.deleteCartegory(id);
+//    }
 }
