@@ -1,6 +1,7 @@
 package com.microservice.borrow.controllers;
 
 import com.microservice.borrow.dto.BorrowDto;
+import com.microservice.borrow.dto.ByTime;
 import com.microservice.borrow.facades.BorrowFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,10 +42,15 @@ public class BorrowController {
         return new ResponseEntity<>(facade.getBorrowByTransactionId(id), HttpStatus.OK);
     }
 
-//    @GetMapping("/borrows/user/{id}")
-//    public List<BorrowDto> getBorrowsByUserId(@PathVariable Integer id){
-//        return facade.getBorrowsByUserId(id);
-//    }
+    @GetMapping("/borrows/user/{id}")
+    public List<BorrowDto> getBorrowsByUserId(@PathVariable("id") Integer id){
+        return facade.getBorrowsByUserId(id);
+    }
+
+    @PostMapping("/borrows/time")
+    public List<Integer> getBorrowIdsByTime(@RequestBody ByTime byTime) {
+        return facade.getBorrowIdsByTime(byTime);
+    }
 
     @PutMapping("/borrows/{id}")
     public ResponseEntity<BorrowDto> updateBorrow(@PathVariable Integer id, @RequestBody BorrowDto dto, HttpServletResponse response){

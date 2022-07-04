@@ -17,7 +17,8 @@ public interface IBorrowService {
     public List<Borrow> getBorrowByStatus(boolean status);
 
     List<Borrow> getByTransactionId(Integer id);
-//    List<Borrow> getByUserId(Integer id);
+
+    List<Integer> getBorrowIdsByTransactionId(Integer id);
 
     public Borrow updateBorrow(Integer id, Borrow borrow);
 

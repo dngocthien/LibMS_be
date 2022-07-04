@@ -15,5 +15,16 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-feign.httpclient.enabled: true
+feign:
+  httpclient.enabled: true
+  okhttp.enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: BASIC
+client:
+  post:
+    baseUrl: 'http://localhost:8085'
 properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect

@@ -1,9 +1,11 @@
 package com.microservice.borrow.dto;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 @Data
 public class TransactionDto {
 

@@ -40,7 +40,6 @@ public class TransactionController {
         return facade.getTransactionByUserId(id);
     }
 
-    //testing
     @PostMapping("/transactions/time")
     public List<TransactionDto> findTransactionByTime(@RequestBody ByTime byTime) {
         return facade.findTransactionByTime(byTime.getFromDate(), byTime.getToDate());

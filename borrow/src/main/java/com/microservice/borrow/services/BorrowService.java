@@ -40,6 +40,11 @@ public class BorrowService implements IBorrowService {
         return repository.findByTransactionIdSorted(id);
     }
 
+    @Override
+    public List<Integer> getBorrowIdsByTransactionId(Integer id) {
+        return repository.findIdByTransactionIdSorted(id);
+    }
+
 //    @Override
 //    public List<Borrow> getByUserId(Integer id) {
 //        return repository.findByUserId(id);
