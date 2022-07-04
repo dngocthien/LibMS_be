@@ -31,20 +31,13 @@ paths:
       produces:
         - application/json
         - application/xml
-      parameters:
-        - in: body
-          name: body
-          description: Categories of books
-          required: true
-          schema:
-            $ref: '#/definitions/Category'
       responses:
         200:
           description: successful operation
           schema:
             type: array
             items:
-              $ref: '#/definitions/Category'
+              $ref: '#/definitions/CategorySwagger'
         405:
           description: Invalid input
     post:
@@ -64,7 +57,7 @@ paths:
           description: Categories of books
           required: true
           schema:
-            $ref: '#/definitions/Category'
+            $ref: '#/definitions/CategorySwagger'
       responses:
         405:
           description: Invalid input
@@ -72,8 +65,8 @@ paths:
     put:
       tags:
         - categories
-      summary: Update an existing pet
-      operationId: updatePet
+      summary: Update an existing category
+      operationId: updateCategory
       consumes:
         - application/json
         - application/xml
@@ -85,24 +78,24 @@ paths:
           in: path
           description: id that need to be updated
           required: true
-          type: string
+          type: integer
         - in: body
           name: body
-          description: Pet object that needs to be added to the store
+          description: category object that needs to be added to the store
           required: true
           schema:
-            $ref: '#/definitions/Category'
+            $ref: '#/definitions/CategorySwagger'
       responses:
         400:
           description: Invalid ID supplied
         404:
-          description: Pet not found
+          description: category not found
         405:
           description: Validation exception
     get:
       tags:
         - categories
-      summary: Get category by ategory id
+      summary: Get category by category id
       operationId: getCategoryById
       produces:
         - application/json
@@ -112,12 +105,12 @@ paths:
           in: path
           description: The name that needs to be fetched.
           required: true
-          type: string
+          type: integer
       responses:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/Category'
+            $ref: '#/definitions/CategorySwagger'
         400:
           description: Invalid category id supplied
         404:
@@ -125,7 +118,7 @@ paths:
     delete:
       tags:
         - categories
-      summary: Delete category by ategory id
+      summary: Delete category by category id
       operationId: deleteCategory
       produces:
         - application/json
@@ -135,31 +128,27 @@ paths:
           in: path
           description: The name that needs to be fetched.
           required: true
-          type: string
+          type: integer
       responses:
-        200:
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Category'
         400:
           description: Invalid category id supplied
         404:
           description: Category not found
 
 # securityDefinitions:
-#   petstore_auth:
+#   category_auth:
 #     type: oauth2
-#     authorizationUrl: http://petstore.swagger.io/oauth/dialog
+#     authorizationUrl: http://categories.swagger.io/oauth/dialog
 #     flow: implicit
 #     scopes:
-#       write:pets: modify pets in your account
-#       read:pets: read your pets
+#       write:categories: modify categories in your account
+#       read:categories: read your categories
 #   api_key:
 #     type: apiKey
 #     name: api_key
 #     in: header
 definitions:
-  Category:
+  CategorySwagger:
     type: object
     properties:
       id:

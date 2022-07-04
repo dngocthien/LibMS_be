@@ -15,5 +15,5 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
+feign.httpclient.enabled: true
 properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect
