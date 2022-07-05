@@ -70,7 +70,7 @@ public class BookFacade {
 
     @Transactional
     public BookDto updateBook(@NotNull Integer id, @NotNull BookDto dto) {
-        // Save book and get book ID
+        // Save book and get book info
 
         Book model = service.getBookByID(id);
         model.setTitle(dto.getTitle());
@@ -93,6 +93,14 @@ public class BookFacade {
             ownService.saveOwn(own);
             ownService.saveOwn(own);
         }
+        return model2Dto(model);
+    }
+
+    @Transactional
+    public BookDto updateBookQuantity(@NotNull Integer id, @NotNull int q) {
+        Book model = service.getBookByID(id);
+        model.setQuantity(model.getQuantity()+q);
+        model = service.saveBook(model);
         return model2Dto(model);
     }
 

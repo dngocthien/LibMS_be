@@ -1,5 +1,7 @@
 package com.microservice.transaction.facades;
 
+import com.microservice.transaction.client.BorrowClient;
+import com.microservice.transaction.dto.BorrowDto;
 import com.microservice.transaction.dto.TransactionDto;
 import com.microservice.transaction.entities.Transaction;
 import com.microservice.transaction.iservices.ITransactionService;
@@ -15,6 +17,17 @@ import java.util.List;
 public class TransactionFacade {
     @Autowired
     private ITransactionService service;
+    @Autowired
+    private BorrowClient borrowClient;
+
+    public TransactionDto saveTransactionBorrows(@NotNull TransactionDto dto, @NotNull List<BorrowDto> borrowDtoList) {
+        Transaction transaction = service.saveTransaction(dto2Model(dto));
+//        for (BorrowDto b: borrowDtoList) {
+//            b.setTransactionId(transaction.getId());
+//        }
+//        borrowClient.addBorrows(borrowDtoList);
+        return model2Dto(transaction);
+    }
 
     public TransactionDto saveTransaction(@NotNull TransactionDto dto) {
         Transaction transaction = service.saveTransaction(dto2Model(dto));

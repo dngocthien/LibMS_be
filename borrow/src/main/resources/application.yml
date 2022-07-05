@@ -1,6 +1,6 @@
 
 server:
-  port: 8084
+  port: 8089
 spring:
   application:
     name: borrow-service
@@ -15,6 +15,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+
 feign:
   httpclient.enabled: true
   okhttp.enabled: true
@@ -26,5 +29,7 @@ feign:
         loggerLevel: BASIC
 client:
   post:
-    baseUrl: 'http://localhost:8085'
+    transaction: 'http://localhost:8085'
+    book: 'http://localhost:8083'
+
 properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect

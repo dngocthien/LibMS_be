@@ -56,6 +56,12 @@ public class BookController {
         return new ResponseEntity<>(facade.updateBook(id, dto), HttpStatus.OK);
     }
 
+    @PutMapping("/books/quantity/{id}")
+    public ResponseEntity<BookDto> updateBookQuantity(@PathVariable Integer id, @RequestBody int q, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.updateBookQuantity(id, q), HttpStatus.OK);
+    }
+
     @DeleteMapping("/books/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Integer id, HttpServletResponse response) {
         facade.deleteBook(id);

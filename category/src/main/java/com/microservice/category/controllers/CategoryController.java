@@ -1,42 +1,44 @@
-//package com.microservice.category.controllers;
-//
-//import com.microservice.category.dto.CategoryDto;
-//import com.microservice.category.facades.CategoryFacade;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@RestController
-//@CrossOrigin
-//public class CategoryController {
-//
-//    @Autowired
-//    private CategoryFacade facade;
-//
-//    @PostMapping("/categories")
-//    public CategoryDto addCategory(@RequestBody CategoryDto category) {
-//        return facade.saveCategory(category);
-//    }
-//
-//    @GetMapping("/categories")
-//    public List<CategoryDto> findAllCategories() {
-//        return facade.getAllCategories();
-//    }
-//
-//    @GetMapping("/categories/{id}")
-//    public CategoryDto findAllCategories(@PathVariable Integer id) {
-//        return facade.getCategoryById(id);
-//    }
-//
-//    @PutMapping("/categories/{id}")
-//    public CategoryDto updateCategory(@PathVariable Integer id, @RequestBody CategoryDto dto) {
-//        return facade.updateCategory(id, dto);
-//    }
-//
-////    @DeleteMapping("/categories/{id}")
-////    @Transactional
-////    public void deleteCategory(@PathVariable Integer id) {
-////        facade.deleteCartegory(id);
-////    }
-//}
+package com.microservice.category.controllers;
+
+import com.microservice.category.facades.CategoryFacade;
+import io.tej.SwaggerCodgen.api.CategoriesApi;
+import io.tej.SwaggerCodgen.model.CategoryDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+public class CategoryController implements CategoriesApi {
+    @Autowired
+    private CategoryFacade facade;
+
+    @Override
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
+        return new ResponseEntity<>(facade.getAllCategories(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<CategoryDto> getCategoryById(Integer id) {
+        return new ResponseEntity<>(facade.getCategoryById(id), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Void> getAllCategory(CategoryDto body) {
+        facade.saveCategory(body);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    public ResponseEntity<Void> updateCategory(Integer id, CategoryDto body) {
+        facade.updateCategory(id, body);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteCategory(Integer id) {
+        facade.deleteCartegory(id);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+}

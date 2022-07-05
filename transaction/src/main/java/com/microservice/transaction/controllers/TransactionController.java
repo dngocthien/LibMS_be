@@ -1,6 +1,7 @@
 package com.microservice.transaction.controllers;
 
 import com.microservice.transaction.dto.ByTime;
+import com.microservice.transaction.dto.TransactionBorrows;
 import com.microservice.transaction.dto.TransactionDto;
 import com.microservice.transaction.facades.TransactionFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,15 @@ public class TransactionController {
     private TransactionFacade facade;
 
     @PostMapping("/transactions")
-    public TransactionDto addTransaction(@RequestBody TransactionDto dto) {
-        return facade.saveTransaction(dto);
+    public TransactionDto addTransactionBorrows(@RequestBody TransactionBorrows transactionBorrows) {
+        System.out.println(transactionBorrows.getTransactionDto().toString());
+        return facade.saveTransactionBorrows(transactionBorrows.getTransactionDto(), transactionBorrows.getBorrowDtoList());
     }
+
+//    @PostMapping("/transactions")
+//    public TransactionDto addTransaction(@RequestBody TransactionDto dto) {
+//        return facade.saveTransaction(dto);
+//    }
 
     @GetMapping("/transactions")
     public List<TransactionDto> findAllTransaction() {

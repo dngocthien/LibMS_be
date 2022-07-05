@@ -5,22 +5,23 @@ import com.microservice.borrow.dto.BorrowDto;
 import com.microservice.borrow.dto.ByTime;
 import com.microservice.borrow.dto.TransactionDto;
 import com.microservice.borrow.entities.Borrow;
-import com.microservice.borrow.feign.TransactionClient;
+import com.microservice.borrow.client.BookClient;
+import com.microservice.borrow.client.TransactionClient;
 import com.microservice.borrow.iservices.IBorrowService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class BorrowFacade {
     @Autowired
     private IBorrowService service;
-
     @Autowired
     private TransactionClient transactionClient;
+    @Autowired
+    private BookClient bookClient;
 
     public BorrowDto saveBorrow(@NotNull BorrowDto dto) {
         Borrow model = service.saveBorrow(dto2Model(dto));
@@ -29,6 +30,9 @@ public class BorrowFacade {
 
     public List<BorrowDto> saveBorrows(List<BorrowDto> dto) {
         List<Borrow> modelList = service.saveBorrows(addModelList(dto));
+        for (Borrow b : modelList) {
+            bookClient.updateBookQuantity(b.getBookId(), 1);
+        }
         return addDtoList(modelList);
     }
 
@@ -64,18 +68,53 @@ public class BorrowFacade {
         return new ArrayList<>();
     }
 
-    public List<Integer> getBorrowIdsByTime(ByTime byTime) {
+    public Map<Integer, Integer> getBorrowIdsByTime(ByTime byTime) {
         List<TransactionDto> transactionByTime = transactionClient.findTransactionByTime(byTime);
         List<Integer> borrowsIdsByTime = new ArrayList<>();
         for (int i = 0; i < transactionByTime.size(); i++) {
-            List<Integer> list = getBorrowIdsByTransactionId(transactionByTime.get(i).getId());
-            borrowsIdsByTime.addAll(list);
+            borrowsIdsByTime.addAll(getBorrowIdsByTransactionId(transactionByTime.get(i).getId()));
         }
-        return borrowsIdsByTime;
+        return convertMap(borrowsIdsByTime);
+    }
+
+    private Map<Integer, Integer> convertMap(List<Integer> list) {
+        Map<Integer, Integer> hm = new HashMap<>();
+        for (Integer i : list) {
+            Integer j = hm.get(i);
+            hm.put(i, (j == null) ? 1 : j + 1);
+        }
+        return sortByValue(hm);
+    }
+
+    public HashMap<Integer, Integer> sortByValue(Map<Integer, Integer> hm) {
+        // Create a list from elements of HashMap
+        List<Map.Entry<Integer, Integer>> list =
+                new LinkedList<Map.Entry<Integer, Integer>>(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1,
+                               Map.Entry<Integer, Integer> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<Integer, Integer> temp = new LinkedHashMap<Integer, Integer>();
+        for (Map.Entry<Integer, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        System.out.println(temp);
+        return temp;
     }
 
     public BorrowDto updateBorrow(Integer id, BorrowDto dto) {
         Borrow model = service.updateBorrow(id, dto2Model(dto));
+        if(dto.isStatus()){
+            bookClient.updateBookQuantity(dto.getBookId(), 1);
+        }else{
+            bookClient.updateBookQuantity(dto.getBookId(), -1);
+        }
         return model2Dto(model);
     }
 

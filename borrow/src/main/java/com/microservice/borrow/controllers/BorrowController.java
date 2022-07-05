@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -48,7 +49,7 @@ public class BorrowController {
     }
 
     @PostMapping("/borrows/time")
-    public List<Integer> getBorrowIdsByTime(@RequestBody ByTime byTime) {
+    public Map<Integer, Integer> getBorrowIdsByTime(@RequestBody ByTime byTime) {
         return facade.getBorrowIdsByTime(byTime);
     }
 

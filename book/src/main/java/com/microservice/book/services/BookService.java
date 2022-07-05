@@ -6,7 +6,6 @@ import com.microservice.book.repo.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,8 +13,6 @@ public class BookService implements IBookService {
 
     @Autowired
     private BookRepo repository;
-//    @Autowired
-//    private BorrowService borrowService;
 
     @Override
     public Book saveBook(Book book) {
@@ -41,16 +38,6 @@ public class BookService implements IBookService {
     public List<Book> getBookByTitle(String text) {
         return repository.findByTitleLike(text);
     }
-
-//    @Override
-//    public List<Book> getNotReturnedByUserId(Integer id) {
-//        List<Book> bookList = new ArrayList<>();
-//        List<Borrow> borrowList = borrowService.getNotReturnedByUserId(id);
-//        for(Borrow borrow: borrowList){
-//            bookList.add(getBookByID(borrow.getBookId()));
-//        }
-//        return bookList;
-//    }
 
     @Override
     public void deleteBook(Integer id) {

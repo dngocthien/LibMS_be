@@ -37,7 +37,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/CategorySwagger'
+              $ref: '#/definitions/CategoryDto'
         405:
           description: Invalid input
     post:
@@ -57,7 +57,7 @@ paths:
           description: Categories of books
           required: true
           schema:
-            $ref: '#/definitions/CategorySwagger'
+            $ref: '#/definitions/CategoryDto'
       responses:
         405:
           description: Invalid input
@@ -84,7 +84,7 @@ paths:
           description: category object that needs to be added to the store
           required: true
           schema:
-            $ref: '#/definitions/CategorySwagger'
+            $ref: '#/definitions/CategoryDto'
       responses:
         400:
           description: Invalid ID supplied
@@ -110,7 +110,7 @@ paths:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/CategorySwagger'
+            $ref: '#/definitions/CategoryDto'
         400:
           description: Invalid category id supplied
         404:
@@ -148,7 +148,7 @@ paths:
 #     name: api_key
 #     in: header
 definitions:
-  CategorySwagger:
+  CategoryDto:
     type: object
     properties:
       id:

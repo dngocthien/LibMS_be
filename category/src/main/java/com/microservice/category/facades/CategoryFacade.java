@@ -1,9 +1,9 @@
 package com.microservice.category.facades;
 
-import com.microservice.category.dto.CategoryDto;
 import com.microservice.category.entities.Category;
 import com.microservice.category.iservices.ICategoryService;
 import com.sun.istack.NotNull;
+import io.tej.SwaggerCodgen.model.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +15,8 @@ public class CategoryFacade {
     @Autowired
     private ICategoryService service;
 
-    public CategoryDto saveCategory(@NotNull CategoryDto dto) {
+    public void saveCategory(@NotNull CategoryDto dto) {
         Category model = service.saveCategory(dto2Model(dto));
-        return model2Dto(model);
     }
 
     public List<CategoryDto> getAllCategories() {
@@ -30,9 +29,8 @@ public class CategoryFacade {
         return model2Dto(model);
     }
 
-    public CategoryDto updateCategory(@NotNull Integer id, @NotNull CategoryDto dto) {
+    public void updateCategory(@NotNull Integer id, @NotNull CategoryDto dto) {
         Category model = service.updateCategory(id, dto2Model(dto));
-        return model2Dto(model);
     }
 
     public void deleteCartegory(Integer id) {

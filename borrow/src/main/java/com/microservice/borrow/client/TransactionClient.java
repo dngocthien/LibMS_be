@@ -1,4 +1,4 @@
-package com.microservice.borrow.feign;
+package com.microservice.borrow.client;
 
 import com.microservice.borrow.dto.ByTime;
 import com.microservice.borrow.dto.TransactionDto;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "TransactionClient", url = "${client.post.baseUrl}")
+@FeignClient(name = "TransactionClient", url = "${client.post.transaction}")
 public interface TransactionClient {
     @GetMapping("/transactions")
     List<TransactionDto> findAllTransaction();
