@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class TransactionBorrows {
     private TransactionDto transactionDto;
-    private List<BorrowDto> borrowDtoList;
+    private List<BorrowDto> borrows;
 }

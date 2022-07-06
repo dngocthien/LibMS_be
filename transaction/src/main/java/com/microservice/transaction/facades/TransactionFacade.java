@@ -22,10 +22,10 @@ public class TransactionFacade {
 
     public TransactionDto saveTransactionBorrows(@NotNull TransactionDto dto, @NotNull List<BorrowDto> borrowDtoList) {
         Transaction transaction = service.saveTransaction(dto2Model(dto));
-//        for (BorrowDto b: borrowDtoList) {
-//            b.setTransactionId(transaction.getId());
-//        }
-//        borrowClient.addBorrows(borrowDtoList);
+        for (BorrowDto b: borrowDtoList) {
+            b.setTransactionId(transaction.getId());
+        }
+        borrowClient.addBorrows(borrowDtoList);
         return model2Dto(transaction);
     }
 

@@ -19,7 +19,7 @@ public class TransactionController {
     @PostMapping("/transactions")
     public TransactionDto addTransactionBorrows(@RequestBody TransactionBorrows transactionBorrows) {
         System.out.println(transactionBorrows.getTransactionDto().toString());
-        return facade.saveTransactionBorrows(transactionBorrows.getTransactionDto(), transactionBorrows.getBorrowDtoList());
+        return facade.saveTransactionBorrows(transactionBorrows.getTransactionDto(), transactionBorrows.getBorrows());
     }
 
 //    @PostMapping("/transactions")
