@@ -57,7 +57,7 @@ public class BorrowFacade {
     }
 
     public List<Integer> getBorrowIdsByTransactionId(Integer id) {
-        return service.getBorrowIdsByTransactionId(id);
+        return service.getBookIdsByTransactionId(id);
     }
 
     public List<BorrowDto> getBorrowsByUserId(Integer id) {
@@ -68,7 +68,7 @@ public class BorrowFacade {
         return new ArrayList<>();
     }
 
-    public Map<Integer, Integer> getBorrowIdsByTime(ByTime byTime) {
+    public Map<Integer, Integer> getBookIdsByTime(ByTime byTime) {
         List<TransactionDto> transactionByTime = transactionClient.findTransactionByTime(byTime);
         List<Integer> borrowsIdsByTime = new ArrayList<>();
         for (int i = 0; i < transactionByTime.size(); i++) {

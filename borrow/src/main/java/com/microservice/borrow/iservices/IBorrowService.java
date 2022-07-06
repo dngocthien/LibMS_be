@@ -18,7 +18,7 @@ public interface IBorrowService {
 
     List<Borrow> getByTransactionId(Integer id);
 
-    List<Integer> getBorrowIdsByTransactionId(Integer id);
+    List<Integer> getBookIdsByTransactionId(Integer id);
 
     public Borrow updateBorrow(Integer id, Borrow borrow);
 

@@ -1,6 +1,8 @@
 package com.microservice.book.controllers;
 
 import com.microservice.book.dto.BookDto;
+import com.microservice.book.dto.ByTime;
+import com.microservice.book.dto.TopBookDto;
 import com.microservice.book.facades.BookFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,12 @@ public class BookController {
     public ResponseEntity<List<BookDto>> findAllBooks(HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<>(facade.getAllBooks(),HttpStatus.OK);
+    }
+
+    @PostMapping("/books/top")
+    public ResponseEntity<List<TopBookDto>> findTopBooks(ByTime byTime, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getTopBooks(byTime),HttpStatus.OK);
     }
 
     @GetMapping("/books/none")

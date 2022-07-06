@@ -49,8 +49,8 @@ public class BorrowController {
     }
 
     @PostMapping("/borrows/time")
-    public Map<Integer, Integer> getBorrowIdsByTime(@RequestBody ByTime byTime) {
-        return facade.getBorrowIdsByTime(byTime);
+    public Map<Integer, Integer> getBookIdsByTime(@RequestBody ByTime byTime) {
+        return facade.getBookIdsByTime(byTime);
     }
 
     @PutMapping("/borrows/{id}")

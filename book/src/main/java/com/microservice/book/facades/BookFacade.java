@@ -1,6 +1,9 @@
 package com.microservice.book.facades;
 
+import com.microservice.book.client.BorrowClient;
 import com.microservice.book.dto.BookDto;
+import com.microservice.book.dto.ByTime;
+import com.microservice.book.dto.TopBookDto;
 import com.microservice.book.entities.Author;
 import com.microservice.book.entities.Book;
 import com.microservice.book.entities.Own;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class BookFacade {
@@ -23,6 +27,8 @@ public class BookFacade {
     private IAuthorService authorService;
     @Autowired
     private IOwnService ownService;
+    @Autowired
+    private BorrowClient borrowClient;
 
     public BookDto saveBook(@NotNull BookDto dto) {
         // Save book and get book ID
@@ -48,6 +54,22 @@ public class BookFacade {
         return addDtoList(modelList);
     }
 
+    public List<TopBookDto> getTopBooks(ByTime byTime) {
+        Map<Integer, Integer> bookIdList = borrowClient.getBookIdsByTime(byTime);
+        System.out.println("here 111111");
+        System.out.println(bookIdList);
+
+        List<TopBookDto> topBookList = new ArrayList<>();
+        for (var entry : bookIdList.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+
+            Book b = service.getBookByID(entry.getKey());
+            TopBookDto topBookDto = model2TopBookDto(b, entry.getValue());
+            topBookList.add(topBookDto);
+        }
+        return topBookList;
+    }
+
     public List<BookDto> getNoneBooks() {
         List<Book> modelList = service.getNoneBooks();
         return addDtoList(modelList);
@@ -62,11 +84,6 @@ public class BookFacade {
         List<Book> modelList = service.getBookByTitle(text);
         return addDtoList(modelList);
     }
-
-//    public List<BookDto> getUserBorrowsById(Integer id){
-//        List<Book> bookList = service.getNotReturnedByUserId(id);
-//        return addDtoList(bookList);
-//    }
 
     @Transactional
     public BookDto updateBook(@NotNull Integer id, @NotNull BookDto dto) {
@@ -129,6 +146,26 @@ public class BookFacade {
         dto.setPrice(model.getPrice());
         dto.setQuantity(model.getQuantity());
         dto.setCategoryId((model.getCategoryId()));
+
+        List<String> authors = new ArrayList<>();
+        List<Own> ownList = ownService.getOwnByBookId(model.getId());
+        for (Own own : ownList) {
+            authors.add(authorService.getAuthorById(own.getAuthorId()).getName());
+        }
+        dto.setAuthors(authors);
+        return dto;
+    }
+
+    private TopBookDto model2TopBookDto(Book model, int time) {
+        if(model == null) return null;
+        TopBookDto dto = new TopBookDto();
+        dto.setId(model.getId());
+        dto.setTitle(model.getTitle());
+        dto.setEdition(model.getEdition());
+        dto.setPrice(model.getPrice());
+        dto.setQuantity(model.getQuantity());
+        dto.setCategoryId((model.getCategoryId()));
+        dto.setTime(time);
 
         List<String> authors = new ArrayList<>();
         List<Own> ownList = ownService.getOwnByBookId(model.getId());

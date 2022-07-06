@@ -15,6 +15,6 @@ public interface BorrowRepo extends JpaRepository<Borrow, Integer> {
     List<Borrow> findByTransactionIdSorted(Integer id);
 
     @Query("SELECT b.bookId FROM Borrow b WHERE b.transactionId = ?1 ORDER BY b.id ASC")
-    List<Integer> findIdByTransactionIdSorted(Integer id);
+    List<Integer> findBookIdByTransactionIdSorted(Integer id);
 
 }
