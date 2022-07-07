@@ -26,8 +26,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<UserDto> findAllUsers() {
-        return facade.getAllUser();
+    public ResponseEntity<List<UserDto>> findAllUsers(HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getAllUser(), HttpStatus.OK);
     }
 
     @GetMapping("/users/id/{id}")
@@ -38,8 +39,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{text}")
-    public List<UserDto> findUserByName(@PathVariable String text) {
-        return facade.getUserByName(text);
+    public ResponseEntity<List<UserDto>> findUserByName(@PathVariable String text, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.getUserByName(text), HttpStatus.OK);
     }
 
     @GetMapping("/users/active")
