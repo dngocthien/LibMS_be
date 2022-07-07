@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="userr" />
+        <module name="springgateway" />
         <module name="auth" />
         <module name="lost" />
         <module name="book" />
         <module name="borrow" />
-        <module name="SpringGateway" />
         <module name="category" />
         <module name="transaction" />
       </profile>
@@ -21,12 +22,15 @@
       <module name="book" target="11" />
       <module name="borrow" target="11" />
       <module name="category" target="11" />
+      <module name="gateway" target="11" />
       <module name="library" target="11" />
       <module name="lost" target="11" />
       <module name="SpringGateway" target="11" />
+      <module name="springgateway" target="11" />
       <module name="swagger" target="11" />
       <module name="swagger2" target="11" />
       <module name="transaction" target="11" />
+      <module name="user" target="11" />
       <module name="userr" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -37,11 +41,14 @@
       <module name="book" options="-parameters" />
       <module name="borrow" options="-parameters" />
       <module name="category" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="library" options="-parameters" />
       <module name="lost" options="-parameters" />
+      <module name="springgateway" options="-parameters" />
       <module name="swagger" options="-parameters" />
       <module name="swagger2" options="-parameters" />
       <module name="transaction" options="-parameters" />
+      <module name="user" options="-parameters" />
       <module name="userr" options="-parameters" />
     </option>
   </component>

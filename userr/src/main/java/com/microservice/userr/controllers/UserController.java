@@ -1,23 +1,28 @@
-package com.microservice.user.controllers;
+package com.microservice.userr.controllers;
 
-import com.microservice.user.dto.UserDto;
-import com.microservice.user.facade.UserFacade;
+import com.microservice.userr.dto.UserDto;
+import com.microservice.userr.facade.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@CrossOrigin
+@RestController
 public class UserController {
 
     @Autowired
     private UserFacade facade;
 
     @PostMapping("/users")
-    public UserDto saveUserById(@RequestBody UserDto dto) {
-        return facade.saveUser(dto);
+    public ResponseEntity<UserDto> saveUserById(@RequestBody UserDto dto, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<>(facade.saveUser(dto), HttpStatus.OK);
     }
 
     @GetMapping("/users")
@@ -35,6 +40,11 @@ public class UserController {
     @GetMapping("/users/{text}")
     public List<UserDto> findUserByName(@PathVariable String text) {
         return facade.getUserByName(text);
+    }
+
+    @GetMapping("/users/active")
+    public List<UserDto> findActiveUsers() {
+        return facade.getActiveUsers();
     }
 
     @PutMapping("/users/{id}")

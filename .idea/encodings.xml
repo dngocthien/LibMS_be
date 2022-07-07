@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/SpringGateway/gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringGateway/gateway/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringGateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/SpringGateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/book/src/main/java" charset="UTF-8" />
@@ -13,15 +9,20 @@
     <file url="file://$PROJECT_DIR$/borrow/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lost/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lost/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springgateway/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springgateway/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springgateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/swagger/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/swagger2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/swagger2/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/transaction/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/transaction/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userr/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userr/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userr/user/src/main/java" charset="UTF-8" />

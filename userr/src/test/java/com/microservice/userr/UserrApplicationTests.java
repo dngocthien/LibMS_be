@@ -1,10 +1,10 @@
-package com.microservice.user;
+package com.microservice.userr;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserApplicationTests {
+class UserrApplicationTests {
 
 	@Test
 	void contextLoads() {

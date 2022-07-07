@@ -1,4 +1,4 @@
-package com.microservice.user.entities;
+package com.microservice.userr.entities;
 
 import lombok.Data;
 

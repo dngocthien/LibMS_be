@@ -1,7 +1,7 @@
-package com.microservice.user.services;
+package com.microservice.userr.services;
 
-import com.microservice.user.entities.Userr;
-import com.microservice.user.repo.UserRepo;
+import com.microservice.userr.entities.Userr;
+import com.microservice.userr.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +29,13 @@ public class UserService {
         return repository.findByNameContaining(text);
     }
 
+    public List<Userr> getActiveUserr() {
+        return repository.findActiveUser();
+    }
+
     public Userr updateUser(Integer id, Userr user) {
         Userr existing = repository.findById(id).orElse(null);
-        if(existing!=null){
+        if (existing != null) {
             existing.setName(user.getName());
             existing.setEmail(user.getEmail());
             existing.setPhone(user.getPhone());
@@ -42,7 +46,7 @@ public class UserService {
         return null;
     }
 
-    public void deleteUser(Integer id){
+    public void deleteUser(Integer id) {
         repository.deleteById(id);
     }
 }

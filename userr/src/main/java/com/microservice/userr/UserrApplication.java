@@ -1,13 +1,13 @@
-package com.microservice.user;
+package com.microservice.userr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserApplication {
+public class UserrApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserApplication.class, args);
+		SpringApplication.run(UserrApplication.class, args);
 	}
 
 }

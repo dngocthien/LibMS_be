@@ -1,28 +1,42 @@
 server:
   port: 8080
+
 spring:
-  application:
-    name: gateway-service
   cloud:
     gateway:
       routes:
-        - id: category-service
-          uri: http://localhost/8082
+        - id: user
+          uri: http://localhost:8088/
           predicates:
-          - Method=GET,POST,PUT
-        - id: book-service
-          uri: http://localhost/8083
+            - Path=/users/**
+            - Method=GET,POST,PUT,DELETE
+        - id: category
+          uri: http://localhost:8082/
           predicates:
-          - Method=GET,POST,PUT
-        - id: borrow-service
-          uri: http://localhost/8089
+            - Path=/categories/**
+            - Method=GET,POST,PUT,DELETE
+        - id: book
+          uri: http://localhost:8084/
           predicates:
-          - Method=GET,POST,PUT
-        - id: transaction-service
-          uri: http://localhost/8085
+            - Path=/books/**
+            - Method=GET,POST,PUT,DELETE
+        - id: borrow
+          uri: http://localhost:8089/
           predicates:
-          - Method=GET,POST,PUT
-        - id: lost-service
-          uri: http://localhost/8086
+            - Path=/borrows/**
+            - Method=GET,POST,PUT,DELETE
+        - id: transaction
+          uri: http://localhost:8085/
           predicates:
-          - Method=GET,POST,PUT
+            - Path=/transactions/**
+            - Method=GET,POST,PUT,DELETE
+        - id: lost
+          uri: http://localhost:8086/
+          predicates:
+            - Path=/losts/**
+            - Method=GET,POST,PUT,DELETE
+        - id: auth
+          uri: http://localhost:8087/
+          predicates:
+            - Path=/auth/**
+            - Method=GET,POST,PUT,DELETE

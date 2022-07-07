@@ -1,4 +1,4 @@
-package com.microservice.user.dto;
+package com.microservice.userr.dto;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ public class UserDto {
     private String name;
     private String phone;
     private String email;
-    private String issueDate;
+    private String issuedDate;
     private String expiredDate;
 
 }
