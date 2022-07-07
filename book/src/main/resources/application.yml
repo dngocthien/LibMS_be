@@ -1,14 +1,18 @@
 
 server:
-  port: 8083
+  port: 8084
 spring:
   application:
     name: book-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 123456
-    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: 123456
+#    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/jwtsecurity
+    username: root
+    password: 18081997
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate.ddl-auto: update
@@ -31,4 +35,5 @@ client:
   post:
     borrow: 'http://localhost:8089'
 
-properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect
+#properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL91Dialect
+properties.hibernate.dialect: org.hibernate.dialect.MySQL5DiaLect

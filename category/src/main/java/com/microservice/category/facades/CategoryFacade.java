@@ -1,9 +1,9 @@
 package com.microservice.category.facades;
 
+import com.microservice.category.dto.CategoryDto;
 import com.microservice.category.entities.Category;
 import com.microservice.category.iservices.ICategoryService;
 import com.sun.istack.NotNull;
-import io.tej.SwaggerCodgen.model.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class CategoryFacade {
     private ICategoryService service;
 
     public void saveCategory(@NotNull CategoryDto dto) {
-        Category model = service.saveCategory(dto2Model(dto));
+        service.saveCategory(dto2Model(dto));
     }
 
     public List<CategoryDto> getAllCategories() {

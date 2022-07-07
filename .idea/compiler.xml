@@ -13,8 +13,8 @@
         <module name="borrow" />
         <module name="category" />
         <module name="user" />
-        <module name="gateway" />
         <module name="transaction" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
